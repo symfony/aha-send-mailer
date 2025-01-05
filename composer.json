@@ -1,5 +1,5 @@
 {
-    "name": "symfony/ahasend-mailer",
+    "name": "symfony/aha-send-mailer",
     "type": "symfony-mailer-bridge",
     "description": "Symfony AhaSend Mailer Bridge",
     "keywords": [],
