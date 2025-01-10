@@ -77,6 +77,7 @@ final class AhaSendApiTransport extends AbstractApiTransport
                 }
             }
         }
+
         return $response;
     }
 
@@ -100,7 +101,6 @@ final class AhaSendApiTransport extends AbstractApiTransport
                 'subject' => $email->getSubject(),
             ],
         ];
-
 
         $text = $email->getTextBody();
         if (!empty($text)) {
@@ -149,7 +149,7 @@ final class AhaSendApiTransport extends AbstractApiTransport
             $headersPrepared[$header->getName()] = $header->getBodyAsString();
         }
         if (!empty($tags)) {
-            $tagsStr = implode(",", $tags);
+            $tagsStr = implode(',', $tags);
             $headers->addTextHeader('AhaSend-Tags', $tagsStr);
             $headersPrepared['AhaSend-Tags'] = $tagsStr;
         }
@@ -179,7 +179,6 @@ final class AhaSendApiTransport extends AbstractApiTransport
                 'data' => $body,
                 'base64' => $base64,
             ];
-
 
             if ($attachment->hasContentId()) {
                 $att['content_id'] = $attachment->getContentId();

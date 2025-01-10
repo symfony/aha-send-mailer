@@ -46,7 +46,7 @@ final class AhaSendRequestParser extends AbstractRequestParser
         if (empty($eventID) || empty($signature) || empty($timestamp)) {
             throw new RejectWebhookException(406, 'Signature is required.');
         }
-        if (!is_numeric($timestamp) || is_float($timestamp+0) || (int)$timestamp != $timestamp || (int)$timestamp <= 0) {
+        if (!is_numeric($timestamp) || \is_float($timestamp + 0) || (int) $timestamp != $timestamp || (int) $timestamp <= 0) {
             throw new RejectWebhookException(406, 'Invalid timestamp.');
         }
         $expectedSignature = $this->sign($eventID, $timestamp, $request->getContent(), $secret);
@@ -64,11 +64,12 @@ final class AhaSendRequestParser extends AbstractRequestParser
         }
     }
 
-    private function sign(string $eventID, string $timestamp, string $payload, $secret) : string
+    private function sign(string $eventID, string $timestamp, string $payload, $secret): string
     {
         $signaturePayload = "{$eventID}.{$timestamp}.{$payload}";
         $hash = hash_hmac('sha256', $signaturePayload, $secret);
         $signature = base64_encode(pack('H*', $hash));
+
         return "v1,{$signature}";
     }
 }
