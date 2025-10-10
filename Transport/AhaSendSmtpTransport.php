@@ -27,7 +27,7 @@ class AhaSendSmtpTransport extends EsmtpTransport
 {
     public function __construct(#[\SensitiveParameter] string $username, #[\SensitiveParameter] string $password, ?EventDispatcherInterface $dispatcher = null, ?LoggerInterface $logger = null)
     {
-        parent::__construct('send.ahasend.com', 587, false, $dispatcher, $logger);
+        parent::__construct('send.ahasend.com', 587, true, $dispatcher, $logger);
 
         $this->setUsername($username);
         $this->setPassword($password);
